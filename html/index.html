@@ -2,10 +2,23 @@
     <head>
         <title>eelテスト</title>
         <link rel="stylesheet" href="./style.css">
+        <script type="text/javascript">
+        function check() {
+            if(document.search_form.search.value == "") {
+                alert("文字を入力してください")
+                return false;
+            }
+        }
+        </script>
     </head>
     <body>
-        <h2>eelテスト</h2>
+        <form name="search_form" action="" method="post" OnSubmit="return check()">
+            <p>検索したいキーワードを入力してください。</p>
+            <input id="search_word" type="search" name="search" placeholder="キーワードを入力">
+            <input id="search_button" type="submit" name="submit" value="検索">
+        </form>
         <script type="text/javascript" src="./eel.js"></script>
+
         <script>
             search.addEventListener('click', () => {
 
