@@ -9,9 +9,10 @@ def kimetsu_search(word):
 
     # 検索
     if word in source:
-        print("『{}』はあります".format(word))
+        eel.view_log_js(f"『{word}』はあります")
     else:
-        print("『{}』はありません".format(word))
+        eel.view_log_js(f"『{word}』はありません")
+        eel.view_log_js(f"『{word}』を追加します")
         # 追加
         #add_flg=input("追加登録しますか？(0:しない 1:する)　＞＞　")
         #if add_flg=="1":

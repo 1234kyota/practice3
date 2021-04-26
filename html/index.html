@@ -2,31 +2,53 @@
     <head>
         <title>eelテスト</title>
         <link rel="stylesheet" href="./style.css">
+
         <script type="text/javascript">
-        function check() {
-            if(document.search_form.search.value == "") {
-                alert("文字を入力してください")
-                return false;
-            }
-        }
+
+                
         </script>
+
     </head>
+
     <body>
-        <form name="search_form" action="" method="post" OnSubmit="return check()">
+
             <p>検索したいキーワードを入力してください。</p>
-            <input id="search_word" type="search" name="search" placeholder="キーワードを入力">
-            <input id="search_button" type="submit" name="submit" value="検索">
-        </form>
+            <input id="search_word" type="text" name="word" placeholder="キーワードを入力"><br>
+            <input id="search_button" type="button" name="submit" value="検索"><br>
+            <textarea id="search_result" name="text" cols="50" rows="10"></textarea><br>
+
+
         <script type="text/javascript" src="./eel.js"></script>
 
-        <script>
-            search.addEventListener('click', () => {
+            <script type="text/javascript">
 
-            })
+                var search = document.getElementById("search_button");
 
-            eel.expose(view_log_js)
-            function view_log_js(text){
-            }
-        </script>
+
+                search.addEventListener('click', () => {
+
+                var search_word = document.getElementById("search_word").value;
+
+                    if(search_word == "") {
+                        alert("文字を入力してください");
+                        return false;
+                    }
+
+                    eel.kimetsu_search(search_word);
+                })
+
+                var result = document.getElementById("search_result").value;
+                eel.expose(view_log_js)
+                    function view_log_js(text){
+                    
+                    // 下記のコードのように変数としてresultを定義するとHTML側のテキストエリアに出力されない
+                    // 入力文字が空かどうかを確認する部分では変数search＿wordを使っても問題なくできる
+                    var result = document.getElementById("search_result").value;
+                    result += text + "\n";
+
+                    //変数とせず書けばHTML側のテキストエリア内にも表示される
+                    document.getElementById("search_result").value += text + "\n";
+                }
+            </script>
     </body>
 </html>
