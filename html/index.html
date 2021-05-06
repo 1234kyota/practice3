@@ -14,8 +14,10 @@
 
             <p>検索したいキーワードを入力してください。</p>
             <input id="search_word" type="text" name="word" placeholder="キーワードを入力"><br>
+            <p>出力先を入力してください。</p>
+            <input id="search_csv" type="text" name="word" placeholder="キーワードを入力"><br>
             <input id="search_button" type="button" name="submit" value="検索"><br>
-            <textarea id="search_result" name="text" cols="50" rows="10"></textarea><br>
+            <textarea id="search_result" name="text" class="search_result"></textarea><br>
 
 
         <script type="text/javascript" src="./eel.js"></script>
@@ -28,16 +30,17 @@
                 search.addEventListener('click', () => {
 
                 var search_word = document.getElementById("search_word").value;
+                var search_csv = document.getElementById("search_csv").value;
 
-                    if(search_word == "") {
+                    if(search_word == "" || search_csv == "") {
                         alert("文字を入力してください");
                         return false;
                     }
 
-                    eel.kimetsu_search(search_word);
+
+                    eel.kimetsu_search(search_word,search_csv);
                 })
 
-                var result = document.getElementById("search_result").value;
                 eel.expose(view_log_js)
                     function view_log_js(text){
                     
